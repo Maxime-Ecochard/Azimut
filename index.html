@@ -23,6 +23,38 @@
     <link rel="stylesheet" href="./src/index.css" />
     
     <title>Azimut</title>
+    <script>
+      window.addEventListener('error', function(e) {
+        const errDiv = document.createElement('div');
+        errDiv.style.position = 'fixed';
+        errDiv.style.top = '10px';
+        errDiv.style.left = '10px';
+        errDiv.style.right = '10px';
+        errDiv.style.padding = '20px';
+        errDiv.style.background = 'rgba(255, 0, 0, 0.9)';
+        errDiv.style.color = 'white';
+        errDiv.style.fontFamily = 'monospace';
+        errDiv.style.zIndex = '999999';
+        errDiv.style.whiteSpace = 'pre-wrap';
+        errDiv.innerHTML = '<h2>Runtime Error:</h2>' + e.message + '<br>at ' + e.filename + ':' + e.lineno + ':' + e.colno + '<br><br>Stack:<br>' + (e.error ? e.error.stack : 'N/A');
+        document.body.appendChild(errDiv);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        const errDiv = document.createElement('div');
+        errDiv.style.position = 'fixed';
+        errDiv.style.top = '10px';
+        errDiv.style.left = '10px';
+        errDiv.style.right = '10px';
+        errDiv.style.padding = '20px';
+        errDiv.style.background = 'rgba(255, 100, 0, 0.9)';
+        errDiv.style.color = 'white';
+        errDiv.style.fontFamily = 'monospace';
+        errDiv.style.zIndex = '999999';
+        errDiv.style.whiteSpace = 'pre-wrap';
+        errDiv.innerHTML = '<h2>Unhandled Promise Rejection:</h2>' + e.reason + '<br><br>Stack:<br>' + (e.reason && e.reason.stack ? e.reason.stack : 'N/A');
+        document.body.appendChild(errDiv);
+      });
+    </script>
   </head>
   <body>
     <!-- App Container -->
